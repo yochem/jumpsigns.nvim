@@ -51,9 +51,9 @@ This is the default:
 
 ## To Do's
 
-- [ ] Implement more jump motions:
-  - [ ] [`{`](https://neovim.io/doc/user/motion.html#{) / [`}`](https://neovim.io/doc/user/motion.html#})?
-  - [ ] [`[[`](https://neovim.io/doc/user/motion.html#[[) / [`]]`](https://neovim.io/doc/user/motion.html#]])?
-  - [ ] ...
-- [ ] Support disabling certain jump motions
-- [ ] Probably include tests
+- Implement more jump motions:
+  - [`{`](https://neovim.io/doc/user/motion.html#{) / [`}`](https://neovim.io/doc/user/motion.html#})?
+  - [`[[`](https://neovim.io/doc/user/motion.html#[[) / [`]]`](https://neovim.io/doc/user/motion.html#]])?
+  - ...
+- Support disabling certain jump motions
+- Probably include tests
