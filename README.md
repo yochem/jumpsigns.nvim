@@ -11,7 +11,7 @@ Currently supported motions:
   [`L`](https://neovim.io/doc/user/motion.html#L)
 - More to come!
 
-This plugin is based on
+This plugin is inspired by
 [mawkler/hml.nvim](https://github.com/mawkler/hml.nvim).
 
 ## Installation
