@@ -2,7 +2,7 @@ local M = {}
 
 M.config = require("jumpsigns.config")
 
-local ns = vim.api.nvim_create_namespace("JumpSigns")
+local ns = vim.api.nvim_create_namespace("jumpsigns")
 
 local function hml_signs()
   local viewport_top = vim.fn.line('w0')
@@ -45,13 +45,13 @@ local function create_autocmd()
       for sym, linenr in pairs(signs) do
         vim.api.nvim_buf_set_extmark(0, ns, linenr - 1, 0, {
           sign_text = M.config.signs[sym].text,
-          sign_hl_group = "JumpSigns" .. sym,
+          sign_hl_group = "@jumpsigns.sign." .. sym,
           priority = M.config.priority,
         })
       end
     end,
     desc = "update jumpsigns signs",
-    group = vim.api.nvim_create_augroup("JumpSigns", { clear = true }),
+    group = vim.api.nvim_create_augroup("jumpsigns", { clear = true }),
   })
 end
 
@@ -59,9 +59,17 @@ local function cleanup()
   for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
     vim.api.nvim_buf_clear_namespace(bufnr, ns, 0, -1)
   end
-  vim.api.nvim_del_augroup_by_name("JumpSigns")
+  vim.api.nvim_del_augroup_by_name("jumpsigns")
 end
 
+local function highlights()
+  vim.api.nvim_set_hl(0, "@jumpsigns.sign", { link = "SignColumn", default = true })
+  for sign, _ in pairs(M.config.signs) do
+    -- e.g. @jumpsigns.sign.L -> @jumpsigns.sign
+    local hl_name = "@jumpsigns.sign." .. sign
+    vim.api.nvim_set_hl(0, hl_name, { link = "@jumpsigns.sign", default = true })
+  end
+end
 
 function M.setup(opts)
   M.config = vim.tbl_deep_extend("force", M.config, opts or {})
@@ -72,18 +80,7 @@ function M.setup(opts)
   end
 
   -- set up highlight settings
-  for sign, sign_opts in pairs(M.config.signs) do
-    local hl_name = "JumpSigns" .. sign
-    local global = vim.api.nvim_get_hl(0, { name = hl_name }) or {}
-    -- needed bc global is not {} but vim.empty_dict()
-    global = vim.tbl_isempty(global) and nil or global
-    vim.api.nvim_set_hl(
-      0,
-      hl_name,
-      M.config.hl_all or sign_opts.hl_opts or global or { link = "SignColumn" }
-    )
-  end
-
+  highlights()
   create_autocmd()
 end
 

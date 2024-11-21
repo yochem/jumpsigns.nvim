@@ -5,11 +5,15 @@
 This plugin shows jump locations of different motions in the sign column, to
 quickly glance which motion to use to get somewhere quickly.
 
-Currently supported motions:
-- [`H`](https://neovim.io/doc/user/motion.html#H) /
-  [`M`](https://neovim.io/doc/user/motion.html#M) /
-  [`L`](https://neovim.io/doc/user/motion.html#L)
-- More to come!
+## Features
+
+- Currently supported motions:
+  - [`H`](https://neovim.io/doc/user/motion.html#H) /
+    [`M`](https://neovim.io/doc/user/motion.html#M) /
+    [`L`](https://neovim.io/doc/user/motion.html#L)
+  - More to come!
+- Checkhealth support: `:checkhealth jumpsigns`
+- Highlighting groups: `:hi @jumpsigns.sign`
 
 This plugin is inspired by
 [mawkler/hml.nvim](https://github.com/mawkler/hml.nvim).
@@ -19,8 +23,8 @@ This plugin is inspired by
 Lazy:
 ```lua
 {
-    "yochem/jumpsigns.nvim",
-    opts = {}
+  "yochem/jumpsigns.nvim",
+  opts = {}
 }
 ```
 
@@ -48,6 +52,23 @@ This is the default:
   },
 }
 ```
+
+The highlighting is handled via Nvims builtin highlight commands. For example:
+
+```lua
+-- this sets all signs to the color orange
+vim.api.nvim_set_hl(0, "@jumpsigns.sign", { fg = "Orange" })
+
+-- or change only one
+vim.api.nvim_set_hl(0, "@jumpsigns.sign.H", { fg = "Gray" })
+```
+
+Or in vimscript:
+
+```vim
+hi @jumpsigns.sign.M guifg=Orange
+```
+
 
 ## To Do's
 
