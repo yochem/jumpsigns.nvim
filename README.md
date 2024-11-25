@@ -78,3 +78,10 @@ hi @jumpsigns.sign.M guifg=Orange
   - ...
 - Support disabling certain jump motions
 - Probably include tests
+
+## Similar Projects
+
+- [mawkler/hml.nvim](https://github.com/mawkler/hml.nvim): Inspired this
+  plugin, always places signs in number column.
+- [tris203/precognition.nvim](https://github.com/tris203/precognition.nvim):
+  Also shows linewise jump targets in a virtual lines below the current line.
