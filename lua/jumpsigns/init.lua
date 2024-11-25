@@ -38,7 +38,7 @@ local function hml_signs()
 end
 
 local function create_autocmd()
-  vim.api.nvim_create_autocmd({ "CursorMoved", "CursorHold" }, {
+  vim.api.nvim_create_autocmd({ "BufEnter", "WinScrolled", "WinResized" }, {
     callback = function()
       local signs = hml_signs()
       vim.api.nvim_buf_clear_namespace(0, ns, 0, -1)
