@@ -20,7 +20,7 @@ end
 local function setup_autocmds()
   local augroup = vim.api.nvim_create_augroup("jumpsigns", { clear = true })
 
-  vim.api.nvim_create_autocmd({ "CursorHold" }, {
+  vim.api.nvim_create_autocmd({ "CursorHold", "User" }, {
     callback = function()
       update_signs(
         vim.api.nvim_create_namespace("jumpsigns/cursor"),
@@ -31,7 +31,7 @@ local function setup_autocmds()
     group = augroup,
   })
 
-  vim.api.nvim_create_autocmd({ "BufEnter", "WinScrolled", "WinResized" }, {
+  vim.api.nvim_create_autocmd({ "BufEnter", "WinScrolled", "WinResized", "User" }, {
     callback = function()
       update_signs(
         vim.api.nvim_create_namespace("jumpsigns/window"),
@@ -41,6 +41,9 @@ local function setup_autocmds()
     desc = "update window-based signs",
     group = augroup,
   })
+
+  -- run autocmds immediately when enabling/toggling
+  vim.api.nvim_exec_autocmds("User", { group = augroup })
 end
 
 local function cleanup()
@@ -63,8 +66,24 @@ local function setup_highlights()
   end
 end
 
+local function setup_plugmaps()
+  vim.keymap.set("n", "<Plug>(JumpSignsEnable)", function ()
+    M.setup({ enabled = true })
+  end)
+
+  vim.keymap.set("n", "<Plug>(JumpSignsDisable)", function ()
+    M.setup({ enabled = false })
+  end)
+
+  vim.keymap.set("n", "<Plug>(JumpSignsToggle)", function ()
+    M.setup({ enabled = not M.config.enabled })
+  end)
+end
+
 function M.setup(opts)
   M.config = vim.tbl_deep_extend("force", M.config, opts or {})
+
+  setup_plugmaps()
 
   if not M.config.enabled then
     cleanup()

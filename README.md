@@ -11,9 +11,12 @@ quickly glance which motion to use to get somewhere quickly.
   - [`H`](https://neovim.io/doc/user/motion.html#H) /
     [`M`](https://neovim.io/doc/user/motion.html#M) /
     [`L`](https://neovim.io/doc/user/motion.html#L)
+  - [`{`](https://neovim.io/doc/user/motion.html#{) /
+    [`}`](https://neovim.io/doc/user/motion.html#})
   - More to come!
 - Checkhealth support: `:checkhealth jumpsigns`
 - Highlighting groups: `:hi @jumpsigns.sign`
+- Toggle on keymap: `:nmap <leader>js <Plug>(JumpSignsToggle)`
 
 This plugin is inspired by
 [mawkler/hml.nvim](https://github.com/mawkler/hml.nvim).
@@ -43,41 +46,62 @@ This is the default:
 ```lua
 {
   enabled = true,
-  hl_all = nil,
   priority = 11,
   signs = {
     H = { text = "H" },
     M = { text = "M" },
     L = { text = "L" },
   },
+  signs = {
+    window_high = { text = "H" },
+    window_middle = { text = "M" },
+    window_low = { text = "L" },
+    paragraph_prev = { text = "{" },
+    paragraph_next = { text = "}" },
+  },
 }
 ```
 
-The highlighting is handled via Nvims builtin highlight commands. For example:
+All `signs` configurations also accept an `enabled` and `priority` argument to
+control the individual jumpsign.
+
+## Tips
+
+### Highlights
+To change colors/highlighting, use Nvims builtin highlight commands:
 
 ```lua
--- this sets all signs to the color orange
+-- Change highlight of all signs
 vim.api.nvim_set_hl(0, "@jumpsigns.sign", { fg = "Orange" })
 
--- or change only one
-vim.api.nvim_set_hl(0, "@jumpsigns.sign.H", { fg = "Gray" })
+-- or change only one (e.g. for `H`)
+vim.api.nvim_set_hl(0, "@jumpsigns.sign.window_high", { fg = "Gray" })
 ```
 
-Or in vimscript:
-
+<details>
+<summary>Vimscript:</summary>
 ```vim
-hi @jumpsigns.sign.M guifg=Orange
+hi @jumpsigns.sign.window_middle guifg=Orange
+```
+</details>
+
+### Toggle and lazy-load
+To toggle, enable, or disable this plugin, `<Plug>(JumpSignsToggle)`,
+`<Plug>(JumpSignsEnable)`, and `<Plug>(JumpSignsToggle)` are exposed. For
+example, to lazy-load on a keymap:
+
+```lua
+require("jumpsigns").setup({ enabled = false })
+vim.keymap.set("n", "<leader>js", "<Plug>(JumpSignsToggle)")
 ```
 
-
-## To Do's
-
-- Implement more jump motions:
-  - [`{`](https://neovim.io/doc/user/motion.html#{) / [`}`](https://neovim.io/doc/user/motion.html#})?
-  - [`[[`](https://neovim.io/doc/user/motion.html#[[) / [`]]`](https://neovim.io/doc/user/motion.html#]])?
-  - ...
-- Support disabling certain jump motions
-- Probably include tests
+<details>
+<summary>Vimscript:</summary>
+```vim
+lua require("jumpsigns").setup({ enabled = false })
+nnoremap <Leader>js <Plug>(JumpSignsToggle)
+```
+</details>
 
 ## Similar Projects
 
