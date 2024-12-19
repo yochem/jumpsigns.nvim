@@ -2,6 +2,11 @@
 
 > Show jump locations in the signcolumn
 
+![Example image](https://private-user-images.githubusercontent.com/23235841/397435597-8335abdb-7692-484f-a696-dd6e03d066b6.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MzQ2MjI4MDgsIm5iZiI6MTczNDYyMjUwOCwicGF0aCI6Ii8yMzIzNTg0MS8zOTc0MzU1OTctODMzNWFiZGItNzY5Mi00ODRmLWE2OTYtZGQ2ZTAzZDA2NmI2LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDEyMTklMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQxMjE5VDE1MzUwOFomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTFiZTIzZjJlNDYxNDhiNDY3ZWYzZWY2MmM0OTNkMzYwZDE1NzEzMzA3YzllMjY3N2YzN2IwZDdiYTY1NzA0NzkmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.sIxJUSKh6Z-UY9hxLJ4QUcgEz8bcVcByD5jLSy4ub-E)
+
+<sup>In the image, the jumpsigns are highlighted in orange. This is not the
+normal highlight color.</sup>
+
 This plugin shows jump locations of different motions in the sign column, to
 quickly glance which motion to use to get somewhere quickly.
 
