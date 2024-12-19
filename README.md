@@ -53,11 +53,6 @@ This is the default:
   enabled = true,
   priority = 11,
   signs = {
-    H = { text = "H" },
-    M = { text = "M" },
-    L = { text = "L" },
-  },
-  signs = {
     window_high = { text = "H" },
     window_middle = { text = "M" },
     window_low = { text = "L" },
@@ -83,13 +78,6 @@ vim.api.nvim_set_hl(0, "@jumpsigns.sign", { fg = "Orange" })
 vim.api.nvim_set_hl(0, "@jumpsigns.sign.window_high", { fg = "Gray" })
 ```
 
-<details>
-<summary>Vimscript:</summary>
-```vim
-hi @jumpsigns.sign.window_middle guifg=Orange
-```
-</details>
-
 ### Toggle and lazy-load
 To toggle, enable, or disable this plugin, `<Plug>(JumpSignsToggle)`,
 `<Plug>(JumpSignsEnable)`, and `<Plug>(JumpSignsToggle)` are exposed. For
@@ -99,14 +87,6 @@ example, to lazy-load on a keymap:
 require("jumpsigns").setup({ enabled = false })
 vim.keymap.set("n", "<leader>js", "<Plug>(JumpSignsToggle)")
 ```
-
-<details>
-<summary>Vimscript:</summary>
-```vim
-lua require("jumpsigns").setup({ enabled = false })
-nnoremap <Leader>js <Plug>(JumpSignsToggle)
-```
-</details>
 
 ## Similar Projects
 
